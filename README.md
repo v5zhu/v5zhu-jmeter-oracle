@@ -1,0 +1,15 @@
+#JAVA实现动态执行sql与jmeter集成测试
+##1.实现动态执行sql返回执行结果
+###1.1支持执行mysql动态sql，返回结果为json数组
+###1.2支持oracle动态sql，返回结果为json数组
+##2.与jmeter集成
+###2.1创建Tester类并继承AbstractJavaSamplerClient
+##3.使用jmeter测试
+jmeter相关包存放于工程下jmeter目录
+###3.1将写好的工程打成jar包
+###3.2网上下载jmeter工程包
+###3.3将jar包放在jmeter的lib/ext/下面
+###3.4进入jmeter的bin目录执行jmeter.bat文件运行jmeter
+####3.5.1工作任务右键添加线程组
+####3.5.2线程组右键添加java请求
+####3.5.3线程组右键添加监听器，监听请求过程中的数据传输与接收。一般多用树形和表格监听器

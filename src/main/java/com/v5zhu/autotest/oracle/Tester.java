@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Tester extends AbstractJavaSamplerClient {
+    private String db;
     private String server;
     private int port;
     private String database;
@@ -34,6 +35,7 @@ public class Tester extends AbstractJavaSamplerClient {
 
     public Arguments getDefaultParameters() {
         Arguments params = new Arguments();
+        params.addArgument("db", "mysql");
         params.addArgument("server", "192.168.13.201");
         params.addArgument("port", "1521");
         params.addArgument("database", "oracledb");
@@ -44,6 +46,7 @@ public class Tester extends AbstractJavaSamplerClient {
     }
 
     public SampleResult runTest(JavaSamplerContext arg0) {
+        db = arg0.getParameter("db");
         server = arg0.getParameter("server");
         port = Integer.parseInt(arg0.getParameter("port"));
         database = arg0.getParameter("database");
@@ -58,7 +61,7 @@ public class Tester extends AbstractJavaSamplerClient {
         try {
             result.sampleStart();
             Map<String, Dao> cp = tp.get();
-            String response = Dao.execute(server, String.valueOf(port), database, username, password, sql);
+            String response = Dao.execute(db,server, String.valueOf(port), database, username, password, sql);
             System.out.println("签到返回:" + response);
             result.setResponseMessage(response);
             result.setSuccessful(true);
